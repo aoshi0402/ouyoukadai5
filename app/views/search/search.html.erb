@@ -1,0 +1,44 @@
+<%= render 'layouts/kensaku', datas: @datas %>
+
+<% if @datas.take.class == User %>
+    <h1>Users serch for "<%= @content %>" </h1>
+    <table class="table table-hover">
+        <% @datas.each do |datas| %>
+        <thead>
+            <tr>
+                <th>image</th>
+								<th>name</th>
+            </tr>
+        </thead>
+				<tbody>
+				<tr>
+					<td><%= attachment_image_tag datas, :profile_image, :fill, 60, 60, fallback: "no-image.png",size:'60x60' %></td>
+					<td><%= datas.name %> </td>
+				</tr>
+				</tbody>
+        <% end %>
+				</table>
+
+<% elsif @datas.take.class == Book %>
+    <h2> Books serch for "<%= @content %>" </h2>
+    <table>
+    <table class="table table-hover">
+        <% @datas.each do |datas| %>
+        <thead>
+            <tr> 
+								<th></th>
+                <th>title</th>
+								<th>Opinion</th>
+            </tr>
+        </thead>
+				<tbody>
+				<tr>
+					<td><%= attachment_image_tag datas.user, :profile_image, :fill, 60, 60, fallback: "no-image.png",size:'60x60' %></td>
+					<td><%= datas.title %> </td>
+					<td><%= datas.body %> </td>
+				</tr>
+				</tbody>
+    <% end %>
+    </table>
+<% else %>
+<% end %>
